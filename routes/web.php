@@ -23,3 +23,4 @@ Route::get('/user', [UserController::class, 'getAllUsers']);
 // post request
 Route::post('/adduser', [UserController::class,'addUser']);
 Route::patch('/update-user/{id}', [UserController::class,'updateUser']);
+Route::delete('/delete-user/{id}', [UserController::class,'deleteUser']);

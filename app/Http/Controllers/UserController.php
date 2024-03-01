@@ -53,4 +53,20 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function deleteUser($id)
+    {
+        $delete = DB::table('tbl_user')->where('id', $id)->delete();
+        if ($delete) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Success Update User'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to Update User'
+            ]);
+        }
+    }
 }

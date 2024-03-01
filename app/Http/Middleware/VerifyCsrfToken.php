@@ -14,5 +14,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/adduser',
         '/update-user/*',
+        'delete-user/*'
     ];
 }
