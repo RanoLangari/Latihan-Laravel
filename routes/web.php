@@ -19,4 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('/user', [UserController::class, 'getAllUsers']);
+Route::get('/user', [UserController::class, 'getAllUsers']);
+// post request
+Route::post('/adduser', [UserController::class,'addUser']);
