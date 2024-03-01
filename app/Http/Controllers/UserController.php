@@ -13,7 +13,8 @@ class UserController extends Controller
         return json_decode($users, true);
     }
 
-    public function addUser(Request $request) {
+    public function addUser(Request $request)
+    {
         $user = DB::table('tbl_user')->insert([
             'nim' => $request->nim,
             'nama' => $request->nama,
@@ -29,6 +30,26 @@ class UserController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Failed to add user'
+            ]);
+        }
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $update = DB::table('tbl_user')->where('id', $id)->update([
+            'nim' => $request->nim,
+            'nama' => $request->nama,
+            'jurusan' => $request->jurusan
+        ]);
+        if ($update) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User updated successfully'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to update user'
             ]);
         }
     }
