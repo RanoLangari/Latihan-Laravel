@@ -10,7 +10,7 @@ class UserController extends Controller
     public function getAllUsers()
     {
         $users = DB::table('tbl_user')->get();
-        return json_decode($users, true);
+        return response ()->json($users);
     }
 
     public function addUser(Request $request)
