@@ -43,7 +43,7 @@ class UserController extends Controller
         ]);
         if ($update) {
             return response()->json([
-                'status' => 'success',
+                'status' => 'success', 
                 'message' => 'User updated successfully'
             ]);
         } else {
