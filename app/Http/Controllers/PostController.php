@@ -42,7 +42,13 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        
+       $posts = Storage::get('post.txt');
+       $posts = explode("\n", $posts);
+
+       $view_data = [
+        'posts'=> $posts[$id - 1]
+        ];
+        return view('posts.show', $view_data);
     }
 
     /**
