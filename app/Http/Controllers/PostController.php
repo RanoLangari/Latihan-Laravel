@@ -44,7 +44,9 @@ class PostController extends Controller
     {
        $posts = Storage::get('post.txt');
        $posts = explode("\n", $posts);
-
+       if (!isset($posts[$id - 1])) {
+           return abort(404);
+       }
        $view_data = [
         'posts'=> $posts[$id - 1]
         ];

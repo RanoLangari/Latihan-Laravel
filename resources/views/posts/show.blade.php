@@ -19,7 +19,6 @@
             <img src="https://via.placeholder.com/750x300" class="card-img-top" alt="...">
             @php
                 $data = explode(",", $posts);
-              
             @endphp
             <div class="card-body">
                 <h2 class="card-title">{{$data[1]}}</h2>
