@@ -34,3 +34,4 @@ Route::get('posts/{id}', [PostController::class,'show']);
 Route::post('posts', [PostController::class,'store']);
 Route::get('posts/{id}/edit', [PostController::class,'edit']);
 Route::patch('posts/{id}/edit', [PostController::class,'update']);
+Route::delete('posts/{id}/delete', [PostController::class,'destroy']);
