@@ -22,6 +22,10 @@
 
 <body>
     <h1 class="text-center mt-5">Blog Latihan Laravel</h1>
+    <div class="container">
+        {{-- modern button --}}
+        <a href="{{url('posts/create')}}" class="btn btn-primary">Tambah Postingan</a>
+    </div>
     <div class="container mt-5">
         @foreach ($posts as $item)
         @php
@@ -32,7 +36,7 @@
                     <h5 class="card-title">{{ $item[1] }}</h5>
                     <p class="card-text">{{ $item[2] }}</p>
                     <p class="card-text"><small class="text-body-secondary">Terakhir diperbaharui pada {{ date("d M Y H:i", strtotime($item[3])) }}</small></p>
-                    <a href="#" class="btn btn-primary">Selengkapnya</a>
+                    <a href="{{ url('/posts', $item[0]) }}" class="btn btn-primary">Selengkapnya</a>
                 </div>
             </div>
         @endforeach

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 
 class PostController extends Controller
 {
@@ -26,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -34,7 +36,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $title = $request->input('title');
+        $content = $request->input('content');
+        DB::table('post')->insert([
+            'title' => $title,
+            'content' => $content,
+            'created_at' => date('Y-m-d H-i-s'),
+            'updated_at' => date('Y-m-d H-i-s')
+            ]); 
+        return redirect('posts');
     }
 
     /**
@@ -42,13 +52,13 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-       $posts = Storage::get('post.txt');
-       $posts = explode("\n", $posts);
-       if (!isset($posts[$id - 1])) {
-           return abort(404);
-       }
-       $view_data = [
-        'posts'=> $posts[$id - 1]
+        $posts = Storage::get('post.txt');
+        $posts = explode("\n", $posts);
+        if (!isset($posts[$id - 1])) {
+            return abort(404);
+        }
+        $view_data = [
+            'posts' => $posts[$id - 1]
         ];
         return view('posts.show', $view_data);
     }
