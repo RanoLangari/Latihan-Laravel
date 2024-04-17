@@ -17,16 +17,13 @@
     <div class="col-md-8">
         <div class="card mb-4">
             <img src="https://via.placeholder.com/750x300" class="card-img-top" alt="...">
-            @php
-                $data = explode(",", $posts);
-            @endphp
             <div class="card-body">
-                <h2 class="card-title">{{$data[1]}}</h2>
-                <p class="card-text">{{$data[2]}}</p>
+                <h2 class="card-title">{{$posts->title}}</h2>
+                <p class="card-text">{{$posts->content}}</p>
                 <a href="#" class="btn btn-primary">Baca Lebih Lanjut</a>
             </div>
             <div class="card-footer text-muted">
-                {{date('d M Y h:i', strtotime($data[3]))}}
+                {{date('d M Y h:i', strtotime($posts->updated_at))}}
                 <a href="#">Penulis</a>
             </div>
         </div>

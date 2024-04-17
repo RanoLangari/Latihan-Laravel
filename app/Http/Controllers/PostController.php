@@ -14,11 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Storage::get("post.txt");
-        $posts = explode("\n", $posts);
-        $view_data = [
-            'posts' => $posts
-
+        $posts = DB::table("post")->select('id','title','content', 'updated_at')->get();
+        $view_data =[
+            "posts"=> $posts
         ];
         return view('posts.index', $view_data);
     }
@@ -52,13 +50,9 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $posts = Storage::get('post.txt');
-        $posts = explode("\n", $posts);
-        if (!isset($posts[$id - 1])) {
-            return abort(404);
-        }
-        $view_data = [
-            'posts' => $posts[$id - 1]
+        $posts = DB::table("post")->select('title','content', 'updated_at')->where('id', $id)->first();
+        $view_data =[
+            "posts"=> $posts
         ];
         return view('posts.show', $view_data);
     }
@@ -68,7 +62,11 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $posts = DB::table("post")->select('id','title','content')->where('id', $id)->first();
+        $view_data =[
+            "posts"=> $posts
+        ];
+        return view('posts.edit', $view_data);
     }
 
     /**
@@ -76,7 +74,12 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        DB::table('post')->where('id', $id)->update([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'updated_at' => date('Y-m-d H-i-s')
+            ]);
+        return redirect('posts');
     }
 
     /**

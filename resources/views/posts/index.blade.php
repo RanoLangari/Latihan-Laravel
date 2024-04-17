@@ -28,15 +28,15 @@
     </div>
     <div class="container mt-5">
         @foreach ($posts as $item)
-        @php
-            $item = explode(",", $item);
-        @endphp
             <div class="card mb-4">
                 <div class="card-body mb-3">
-                    <h5 class="card-title">{{ $item[1] }}</h5>
-                    <p class="card-text">{{ $item[2] }}</p>
-                    <p class="card-text"><small class="text-body-secondary">Terakhir diperbaharui pada {{ date("d M Y H:i", strtotime($item[3])) }}</small></p>
-                    <a href="{{ url('/posts', $item[0]) }}" class="btn btn-primary">Selengkapnya</a>
+                    <h5 class="card-title">{{ $item->title }}</h5>
+                    <p class="card-text">{{ $item->content }}</p>
+                    <p class="card-text"><small class="text-body-secondary">Terakhir diperbaharui pada {{ date("d M Y H:i", strtotime($item->updated_at)) }}</small></p>
+                    <div class="justify-between">
+                        <a href="{{ url('/posts', $item->id) }}" class="btn btn-primary">Selengkapnya</a>
+                    <a href="{{ url('/posts/'. $item->id . '/edit') }}" class="btn btn-primary">Edit Postingan</a>
+                    </div>
                 </div>
             </div>
         @endforeach
