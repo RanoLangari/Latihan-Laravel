@@ -19,6 +19,7 @@ class postSeeder extends Seeder
         DB::table('post')->insert([
             'title' => "Ini Adalah Judul Dari Postingan",
             'content' => "ini merupakan sebuah postingan yang menuliskan mengenai hal hal random",
+            'active' => true,
             'created_at' => date('Y-m-d H-i-s'),
             'updated_at' => date('Y-m-d H-i-s')
         ]);
