@@ -12,7 +12,7 @@
 </head>
 <body>
     <h2 class="mb-4">Edit Postingan</h2>
-    <form action="{{ url('posts/'.$posts->id.'/update') }}" method="POST">
+    <form action="{{ url("posts/$posts->id/edit") }}" method="POST">
         @csrf
         @method('PATCH')
         <div class="mb-3">

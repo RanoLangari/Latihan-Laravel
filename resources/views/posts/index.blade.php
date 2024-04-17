@@ -35,8 +35,8 @@
                     <p class="card-text"><small class="text-body-secondary">Terakhir diperbaharui pada
                             {{ date('d M Y H:i', strtotime($item->updated_at)) }}</small></p>
                     <div class="justify-between">
-                        <a href="{{ url('/posts', $item->id) }}" class="btn btn-primary">Selengkapnya</a>
-                        <a href="{{ url('/posts/' . $item->id . '/edit') }}" class="btn btn-primary">Edit Postingan</a>
+                        <a href="{{ url("/posts/$item->id") }}" class="btn btn-primary">Selengkapnya</a>
+                        <a href="{{ url("/posts/$item->id/edit") }}" class="btn btn-warning">Edit Postingan</a>
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#deleteModal-{{ $item->id }}">
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                        <form action="{{ url('/posts/' . $item->id) . '/delete' }}" method="POST">
+                                        <form action="{{ url("/posts/$item->id)/delete") }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">Hapus</button>
