@@ -41,25 +41,13 @@
             </div>
         </div>
         <div class="card my-4">
-            <h5 class="card-header">Kategori</h5>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#">Web Design</a></li>
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">Freebies</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled mb-0">
-                            <li><a href="#">JavaScript</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">Tutorials</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <h5 class="card-header">Komentar</h5>
+        <b class="text-sm">{{$total_comments}} komentar</b>
+        <ul class="list-group list-group-flush">
+            @foreach($comments as $comment)
+                <li class="list-group-item">{{$comment->comment}}</li>
+            @endforeach
+        </ul>
         </div>
     </div>
 </div>
