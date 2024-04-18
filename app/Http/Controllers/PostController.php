@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = DB::table("post")->select('id','title','content', 'updated_at')->where('active', true)->get();
+        $posts = post::active()->get();
         $view_data =[
             "posts"=> $posts
         ];
@@ -36,7 +37,7 @@ class PostController extends Controller
     {
         $title = $request->input('title');
         $content = $request->input('content');
-        DB::table('post')->insert([
+        post::insert([
             'title' => $title,
             'content' => $content,
             'created_at' => date('Y-m-d H-i-s'),
@@ -50,7 +51,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $posts = DB::table("post")->select('title','content', 'updated_at')->where('id', $id)->first();
+        $posts = post::where('id', $id)->first();
         $view_data =[
             "posts"=> $posts
         ];
@@ -62,7 +63,7 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $posts = DB::table("post")->select('id','title','content')->where('id', $id)->first();
+        $posts = post::where('id', $id)->first();
         $view_data =[
             "posts"=> $posts
         ];
@@ -74,7 +75,7 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        DB::table('post')->where('id', $id)->update([
+        post::where('id', $id)->update([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
             'updated_at' => date('Y-m-d H-i-s')
@@ -87,7 +88,7 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        DB::table('post')->where('id', $id)->delete();
+        post::where('id', $id)->delete();
         return redirect('posts');
     }
 }
