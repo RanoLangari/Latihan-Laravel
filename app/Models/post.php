@@ -10,15 +10,32 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public $fillable = [
+        'title',
+        'content'
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($post) {
+            $post->slug = str_replace(' ', '-', $post->title);
+        });
+    }
     protected $table = 'post';
-    
-    public function comments(){
+
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
-    public function total_comments(){
+    public function total_comments()
+    {
         return $this->comments()->count();
     }
-    public function scopeActive ($query){
-        return $query->where('active',true);
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
     }
 }
