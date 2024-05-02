@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
@@ -21,6 +22,9 @@ Route::get('/', function () {
 });
 
 Route::get('hello', function(){return view ('hello');} );
+
+Route::get('/login',[AuthController::class,'login']);
+Route::post('/login', [AuthController::class, 'authenticate']);
 
 Route::get('/user', [UserController::class, 'getAllUsers']);
 Route::post('/adduser', [UserController::class,'addUser']);
