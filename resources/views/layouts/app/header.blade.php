@@ -6,7 +6,12 @@
             </a>
         </div>
         <div class="d-flex justify-content-end">
-            <a href="{{ url('login') }}" class="btn btn-primary ">Login</a>
+            @if (Auth::check())
+            <a href="{{ url('logout') }}" class="btn btn-primary" style="margin-right: 20px">Logout</a>
+            @else
+            <a href="{{ url('login') }}" class="btn btn-primary" style="margin-right: 20px">Login</a>
+            <a href="{{url('register')}}" class="btn btn-primary">Register</a>
+            @endif
         </div> 
 
     </div>

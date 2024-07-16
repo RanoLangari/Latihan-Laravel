@@ -26,6 +26,11 @@ Route::get('hello', function(){return view ('hello');} );
 Route::get('/login',[AuthController::class,'login']);
 Route::post('/login', [AuthController::class, 'authenticate']);
 
+Route::get('/register', [AuthController::class, 'Register']);
+Route::post('/register', [AuthController::class, 'registerUser']);
+
+Route::get('/logout', [AuthController::class, 'logout']);
+
 Route::get('/user', [UserController::class, 'getAllUsers']);
 Route::post('/adduser', [UserController::class,'addUser']);
 Route::patch('/update-user/{id}', [UserController::class,'updateUser']);
